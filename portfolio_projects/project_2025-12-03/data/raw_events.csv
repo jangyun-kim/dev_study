@@ -1,0 +1,27 @@
+user_id,event_time,event_text
+1,2025-01-01 10:00:00,search hybrid car
+1,2025-01-01 10:01:00,view kona hybrid
+1,2025-01-01 10:05:00,click model page
+1,2025-01-01 11:00:00,search ev charger
+1,2025-01-01 11:04:00,view ioniq 6
+1,2025-01-01 12:40:00,search ev subsidy
+1,2025-01-01 12:41:00,click subsidy page
+2,2025-01-02 09:10:00,search best coffee
+2,2025-01-02 09:11:10,view starbucks latte
+2,2025-01-02 09:11:55,click product detail
+2,2025-01-02 12:00:00,search americano price
+2,2025-01-02 12:40:00,order iced americano
+3,2025-01-03 14:00:00,search iphone case
+3,2025-01-03 14:02:00,view apple case black
+3,2025-01-03 14:03:10,add to cart
+3,2025-01-03 16:30:00,search airpods
+3,2025-01-03 16:31:05,view airpods pro 2
+3,2025-01-03 16:50:00,checkout complete
+4,2025-01-04 18:00:00,vehicle start
+4,2025-01-04 18:03:00,vehicle stop
+4,2025-01-04 20:40:00,charging start
+4,2025-01-04 21:00:00,charging complete
+5,2025-01-05 08:00:00,search coding test
+5,2025-01-05 08:10:00,view python tutorial
+5,2025-01-05 08:14:00,click data engineer roadmap
+5,2025-01-05 10:30:00,search machine learning
