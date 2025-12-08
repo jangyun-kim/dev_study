@@ -72,8 +72,6 @@ portfolio_projects/
 python tools/create_project.py --date YYYY-MM-DD
 ```
 
-```
-
 생성된 폴더는 다음을 포함합니다:
 
 • 데이터 폴더
@@ -110,4 +108,3 @@ pytest
 본 포트폴리오는 일반적인 B2C/B2B 서비스 환경에서 사용되는 행동 분석 및 ML Pipeline 설계 역량을 입증하는 것을 목표로 합니다.
 
 ---
-```
