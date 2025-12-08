@@ -13,7 +13,7 @@ Daily Project Scaffolding Tool
 import os
 import datetime
 from pathlib import Path
-base_dir = Path.home() / "Google Drive" / "dev_portfolio" / "portfolio_projects"
+BASE_DIR = "G:\My Drive\MyPortfolio\dev_study\portfolio_projects"
 
 
 
@@ -72,7 +72,7 @@ class FeatureAggregator:
 
 MODEL_TEMPLATE = """# models/baseline.py
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import roc_auc_score, log_loss
+from sklearn.metricts import roc_auc_score, log_loss
 
 class BaselineCTRModel:
     \"\"\"기본 Logistic Regression 기반 CTR 예측 모델 템플릿\"\"\"

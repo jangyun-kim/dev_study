@@ -18,6 +18,8 @@ Session Analysis → Feature Engineering → NLP Embedding → ML Pipeline 구�
 ## 📁 Repository Structure
 
 아래는 전체 프로젝트 구조입니다:
+
+```bash
 dev_study/
 │
 ├── portfolio_projects/
@@ -38,21 +40,25 @@ dev_study/
 └── assets/
 ├── images/
 └── references/
+```
 
 ---
 
 ## 📈 Project Archive (자동 확장 구조)
 
-프로젝트는 날짜별로 `portfolio_projects/project_YYYY-MM-DD/` 폴더에 누적됩니다.  
-각 프로젝트는 독립 실행 가능한 상태로 설계되어 있으며,  
+프로젝트는 날짜별로 `portfolio_projects/project_YYYY-MM-DD/` 폴더에 누적됩니다.
+각 프로젝트는 독립 실행 가능한 상태로 설계되어 있으며,
 해당 폴더 내 `README.md`를 통해 상세 내용을 확인할 수 있습니다.
 
 예시:
+
+```bash
 portfolio_projects/
 ├── project_2025-12-03/ # Day1
 ├── project_2025-12-04/ # Day2
 ├── project_2025-12-05/ # Day3
 └── ...
+```
 
 ※ 최상단 README는 매일 수정할 필요 없이, 프로젝트는 폴더 구조가 자동으로 확장됩니다.
 
@@ -64,6 +70,8 @@ portfolio_projects/
 
 ```bash
 python tools/create_project.py --date YYYY-MM-DD
+```
+
 ```
 
 생성된 폴더는 다음을 포함합니다:
@@ -102,3 +110,4 @@ pytest
 본 포트폴리오는 일반적인 B2C/B2B 서비스 환경에서 사용되는 행동 분석 및 ML Pipeline 설계 역량을 입증하는 것을 목표로 합니다.
 
 ---
+```
