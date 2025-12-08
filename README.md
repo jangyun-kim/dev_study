@@ -15,7 +15,7 @@ Session Analysis → Feature Engineering → NLP Embedding → ML Pipeline 구�
 
 ---
 
-## Version: v1.4
+## Version: v1.6
 
 ### Version Management
 
@@ -54,6 +54,7 @@ Session Analysis → Feature Engineering → NLP Embedding → ML Pipeline 구�
 
 | Version    | Date       | Changes                                       |
 | ---------- | ---------- | --------------------------------------------- |
+| **v1.6.0** | 2025-12-09 | Template Engine Upgrade                       |
 | **v1.5.0** | 2025-12-09 | Auto EDA System Added                         |
 | **v1.4.0** | 2025-12-09 | Change Log System Added & Version Unification |
 | **v1.3.0** | 2025-12-08 | Unified Version System                        |
@@ -63,10 +64,17 @@ Session Analysis → Feature Engineering → NLP Embedding → ML Pipeline 구�
 
 ### Version Change Log
 
+- **v1.6.0 (2025-12-09)**:
+  - Added full Jupyter Notebook JSON generator (analysis/feature/model),
+  - Added Auto EDA notebook with visualization & profiling workflow,
+  - Improved daily README generator with business scenario block,
+  - Added semantic versioning + internal changelog system,
+  - Enhanced template folder structure and robustness,
+  - Updated project creation workflow for data engineering + ML pipelines"
 - **v1.5.0 (2025-12-09)**:
-  - Lightweight Auto EDA 모듈 추가 (missing, stats, plot, heatmap)
-  - 모든 Daily Project에 eda_overview.md 자동 생성
-  - assets 폴더에 시각화 파일 저장 기능 포함
+  - Lightweight Auto EDA 모듈 추가 (missing, stats, plot, heatmap),
+  - 모든 Daily Project에 eda_overview.md 자동 생성,
+  - assets 폴더에 시각화 파일 저장 기능 포함,
   - DatasetBuilder와 Template Generator에 AutoEDA 연동
 - **v1.4.0 (2025-12-09)**:
   - Daily Version 제거 및 Global Version 단일화,
