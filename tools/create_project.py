@@ -1,48 +1,51 @@
 """
-create_project.py
-Version: v1.0.0 (2025-12-08)
+====================================================================
+create_project.py — Daily Project Generator (Template System v1.4)
+====================================================================
 
-Semantic Versioning (SemVer):
-- MAJOR: Breaking changes (기존 구조와 비호환)
-- MINOR: New features added (기존 기능과 호환)
-- PATCH: Bug fixes / small improvements
+Version Management Policy (Semantic Versioning)
+------------------------------------------------
+- MAJOR: Breaking changes (폴더 구조, 템플릿 구조 대규모 변경)
+- MINOR: 새로운 기능 추가 (Notebook, SQL 샘플 등)
+- PATCH: 버그 수정, 경로 문제 해결, 작은 개선
 
-Change Log:
-- v0.5.0:
-    * 프로젝트 생성 기능 완전 재설계
-    * Day별 project_type(de_pipeline, ml_retrieval, experiment 등) 지원
-    * templates 폴더를 실제로 활용하도록 구조 변경
-    * notebooks/, assets/plots, assets/diagrams 자동 생성 추가
-    * Fill your code 영역 자동 삽입 기능 추가
-- v0.4.1:
-    * 템플릿 구조 일부 도입
-    * 불필요 폴더 제거
-- v0.4.0:
-    * 최초 Daily Project Generator 추가
-- v1.0.0:
-    * Template 기반 프로젝트 생성 시스템 완성
+CHANGE LOG
+------------------------------------------------
+v1.4 (2025-12-09)
+- Added internal CHANGE_LOG section for version tracking
+- Improved template version injection into daily README
+- Prepared system for automatic version synchronization in README
 
-주요 기능:
- - templates/ 폴더 내부의 템플릿 파일 자동 로드
- - placeholder 자동 치환 ({{DATE}}, {{PROJECT_NAME}} 등)
- - 매일 project_YYYY-MM-DD 폴더 생성
- - 정해진 구조(pipelines, builder, evaluator, sql, notebooks, tests) 자동 생성
- - README, instructions, concepts 문서 자동 생성
+v1.3 (2025-12-09)
+- Unified version system: Daily project versions removed
+- Global Template Version only
+- Daily README cleanup + footer version auto insert
 
-버전 규칙:
-  Major.Minor.Patch
-  1.0.0 → 템플릿 시스템 전체 완성
+v1.2 (2025-12-09)
+- Added Notebook Template
+- Added Feature Engineering sample code
+- Added SQL sample analysis template
+
+v1.1 (2025-12-08)
+- Added full template system (python/sql/markdown/tests)
+- Placeholder replacement logic
+
+v1.0 (2025-12-07)
+- Initial pipeline generator implemented
 """
 
 import os
 import shutil
 from datetime import datetime
 
+# ============================================================
+# 🔥 Global Template Version — only this version is maintained
+# ============================================================
+TEMPLATE_VERSION = "v1.4"
 
-# -----------------------------------------------------------
-# Helper: 템플릿 파일 내용을 placeholder 치환하여 읽기
-# -----------------------------------------------------------
+
 def load_and_format_template(template_path: str, replacements: dict) -> str:
+    """템플릿 파일을 불러와 placeholder를 치환."""
     with open(template_path, "r", encoding="utf-8") as f:
         content = f.read()
 
@@ -52,9 +55,6 @@ def load_and_format_template(template_path: str, replacements: dict) -> str:
     return content
 
 
-# -----------------------------------------------------------
-# Daily Project Generator
-# -----------------------------------------------------------
 class ProjectGenerator:
 
     def __init__(self):
@@ -81,9 +81,6 @@ class ProjectGenerator:
         for folder in folders:
             os.makedirs(os.path.join(self.project_dir, folder), exist_ok=True)
 
-    # --------------------------------------------------------
-    # Python 템플릿 복사
-    # --------------------------------------------------------
     def copy_python_templates(self):
         src = os.path.join(self.templates_dir, "python")
         dst_map = {
@@ -95,40 +92,27 @@ class ProjectGenerator:
         }
 
         for src_file, dst_file in dst_map.items():
-            src_path = os.path.join(src, src_file)
-            dst_path = os.path.join(self.project_dir, dst_file)
+            shutil.copy(os.path.join(src, src_file), os.path.join(self.project_dir, dst_file))
 
-            shutil.copy(src_path, dst_path)
-
-    # --------------------------------------------------------
-    # SQL 템플릿 복사
-    # --------------------------------------------------------
     def copy_sql_templates(self):
         src = os.path.join(self.templates_dir, "sql")
         dst = os.path.join(self.project_dir, "sql")
-
         for file in os.listdir(src):
             shutil.copy(os.path.join(src, file), dst)
 
-    # --------------------------------------------------------
-    # Notebook 템플릿 복사
-    # --------------------------------------------------------
     def copy_notebook_template(self):
         src = os.path.join(self.templates_dir, "notebooks")
         dst = os.path.join(self.project_dir, "notebooks")
-
         for file in os.listdir(src):
             shutil.copy(os.path.join(src, file), dst)
 
-    # --------------------------------------------------------
-    # Markdown 템플릿 복사 + 치환
-    # --------------------------------------------------------
     def copy_markdown_templates(self):
         md_src = os.path.join(self.templates_dir, "markdown")
 
         replacements = {
             "DATE": self.date,
-            "PROJECT_NAME": f"Daily Project {self.date}"
+            "PROJECT_NAME": f"Daily Project {self.date}",
+            "TEMPLATE_VERSION": TEMPLATE_VERSION
         }
 
         md_files = {
@@ -141,14 +125,18 @@ class ProjectGenerator:
             src_path = os.path.join(md_src, src_file)
             dst_path = os.path.join(self.project_dir, dst_file)
 
-            output = load_and_format_template(src_path, replacements)
+            content = load_and_format_template(src_path, replacements)
+
+            # 🔥 Daily Version 제거
+            content = content.replace("## Version", "")
+            content = content.replace("{{VERSION}}", "")
+
+            # 🔥 Global Template Version Footer
+            content += f"\n---\n**Template Version: {TEMPLATE_VERSION}**\n"
 
             with open(dst_path, "w", encoding="utf-8") as f:
-                f.write(output)
+                f.write(content)
 
-    # --------------------------------------------------------
-    # Execute
-    # --------------------------------------------------------
     def generate(self):
         print(f"\n🚀 Creating new project for {self.date}...\n")
 
@@ -159,13 +147,10 @@ class ProjectGenerator:
         self.copy_markdown_templates()
 
         print(f"✨ Project created: {self.project_dir}")
-        print("👉 README, instructions, concepts generated.")
-        print("👉 Fill your code sections are ready.\n")
+        print("👉 Template Version applied:", TEMPLATE_VERSION)
+        print("👉 Version History embedded inside create_project.py CHANGE LOG section.")
 
 
-# --------------------------------------------------------
-# Script Entry
-# --------------------------------------------------------
 if __name__ == "__main__":
     generator = ProjectGenerator()
     generator.generate()

@@ -15,22 +15,71 @@ Session Analysis → Feature Engineering → NLP Embedding → ML Pipeline 구�
 
 ---
 
-## Version History
+## Version: v1.4
 
-| Version    | Date       | Changes                                                   |
-| ---------- | ---------- | --------------------------------------------------------- |
-| **v0.1.0** | 2025-12-02 | 프로젝트 구조 설계, Day1 Sessionizer 개발                 |
-| **v0.2.0** | 2025-12-03 | Clusterer 추가, Feature Store 설계                        |
-| **v0.3.0** | 2025-12-04 | README 구조 개선, Day3 Feature Engineering 완료           |
-| **v0.4.0** | 2025-12-05 | create_project.py 전면 개편 (자동 프로젝트 생성기 고도화) |
-| **v0.4.1** | 2025-12-05 | Template 기반 생성, 불필요 폴더 제거                      |
-| **v0.5.0** | 2025-12-06 | Day4 DE Pipeline 설계를 위한 구조 추가                    |
+### Version Management
 
-### Version
+- MAJOR (예: v1.0.0 → v2.0.0)
+  대규모 구조 변경 시 발생한다:
 
-- **v0.1.0 (2025-12-09)**: 초기 템플릿 생성, Session-level Aggregation Task 정의
-- **v0.1.1 (2025-12-09)**: ModelInputBuilder class skeleton 추가
-- **v0.1.2 (2025-12-09)**: Notebook template & diagram template 자동생성 기능 추가
+  - 템플릿/폴더 구조 자체가 바뀔 때
+  - Daily Project 생성 로직이 완전히 재설계될 때
+  - 이전 버전과 호환이 깨지는 변경이 있을 때
+
+**예시**
+
+- 프로젝트 생성 구조가 pipelines → src 구조로 완전히 전환됨
+- SQL/Notebook/Python 템플릿 구성이 완전히 새롭게 바뀜
+- create_project.py 실행 파라미터가 변경됨
+
+- MINOR (예: v1.2.0 → v1.3.0)
+  **새로운 기능을 추가했을 때 적용되는 업데이트:**
+- 템플릿에 notebook 추가
+- SQL 기본 분석 템플릿 추가
+- Feature Engineering 샘플 추가
+- 테스트 템플릿 강화
+- 문서 자동 생성 기능 확장
+  호환성은 유지되며, MAJOR 업데이트 없이 기능만 강화됨
+
+- PATCH (예: v1.2.1 → v1.2.2)
+  **버그 수정** 또는 **작은 품질 개선** 시 적용:
+- 경로 문제 해결
+- 오타 수정
+- create_project.py 리팩토링
+- 템플릿 내부 변수 누락 fix
+  기능적 변화 없이 동작 안정성을 높이는 목적.
+
+### Version History
+
+| Version    | Date       | Changes                                       |
+| ---------- | ---------- | --------------------------------------------- |
+| **v1.4.0** | 2025-12-09 | Change Log System Added & Version Unification |
+| **v1.3.0** | 2025-12-08 | Unified Version System                        |
+| **v1.2.0** | 2025-12-08 | Notebook + Feature/SQL Templates Added        |
+| **v1.1.0** | 2025-12-08 | Full Template System                          |
+| **v1.0.0** | 2025-12-07 | Initial Generator                             |
+
+### Version Change Log
+
+- **v1.4.0 (2025-12-09)**:
+  - Daily Version 제거 및 Global Version 단일화,
+  - create_project.py 내부 Change Log 공식 섹션 추가,
+  - README에 Template Version 자동 삽입 로직 통합
+  - 전체 버전 관리 체계 정립 (MAJOR/MINOR/PATCH)
+- **v1.3.0 (2025-12-08)**: ModelInputBuilder class skeleton 추가
+  - Daily project versions removed
+  - Only global template version maintained as general version
+  - Daily README cleanup & version removal
+- **v1.2.0 (2025-12-08)**: Notebook template & diagram template 자동생성 기능 추가
+  - Notebook template 자동 생성
+  - Feature engineering sample 추가
+  - SQL analysis 치환 기능 구축
+- **v1.1.0 (2025-12-08)**:
+  - Python / SQL / Markdown / Tests 템플릿 구조 완성
+  - placeholder 치환 기능 구축
+- **v1.0.0 (2025-12-07)**:
+  - 기본 project_YYYY-MM-DD 자동 생성 기능 구축
+  - pipeline / builder / evaluator / tests 기본 생성
 
 ---
 
