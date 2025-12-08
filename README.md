@@ -54,6 +54,7 @@ Session Analysis → Feature Engineering → NLP Embedding → ML Pipeline 구�
 
 | Version    | Date       | Changes                                       |
 | ---------- | ---------- | --------------------------------------------- |
+| **v1.7.0** | 2025-12-09 | Template Engine Upgrade_2                     |
 | **v1.6.0** | 2025-12-09 | Template Engine Upgrade                       |
 | **v1.5.0** | 2025-12-09 | Auto EDA System Added                         |
 | **v1.4.0** | 2025-12-09 | Change Log System Added & Version Unification |
@@ -64,6 +65,11 @@ Session Analysis → Feature Engineering → NLP Embedding → ML Pipeline 구�
 
 ### Version Change Log
 
+- **v1.7.0 (2025-12-09)**:
+  - Added dynamic daily project file generation (--gen option)
+  - Enabled AI-aware selective module creation
+  - Added template-based feature/model/pipeline/test generator
+  - Improved notebook auto-creation & EDA support"
 - **v1.6.0 (2025-12-09)**:
   - Added full Jupyter Notebook JSON generator (analysis/feature/model),
   - Added Auto EDA notebook with visualization & profiling workflow,
