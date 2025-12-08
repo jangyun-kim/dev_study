@@ -140,23 +140,19 @@ data/item_featrues.csv
 
 user_featrues.csv 예시
 
-```table
 | user_id | user_total_events | user_unique_items | user_clicks |
 | ------- | ----------------- | ----------------- | ----------- |
 | 1       | 6                 | 2                 | 2           |
 | 2       | 5                 | 2                 | 1           |
 | 3       | 6                 | 2                 | 2           |
-```
 
 item_features.csv 예시
 
-```table
 | item_id | item_views | item_clicks | item_ctr |
 | ------- | ---------- | ----------- | -------- |
 | 101     | 2          | 1           | 0.50     |
 | 202     | 2          | 1           | 0.50     |
 | 401     | 2          | 1           | 0.50     |
-```
 
 ## 8) 기술적 포인트 (Technical Insight)
 

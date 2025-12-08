@@ -1,4 +1,4 @@
-# 📊 Data Portfolio – Practical Machine Learning & Data Engineering Projects
+# Data Portfolio – Practical Machine Learning & Data Engineering Projects
 
 이 레포지토리는 웹/앱 기반 서비스 환경에서 수집되는 **사용자 행동 데이터(User Behavior Logs)** 를 활용하여  
 Session Analysis → Feature Engineering → NLP Embedding → ML Pipeline 구축까지  
@@ -15,7 +15,26 @@ Session Analysis → Feature Engineering → NLP Embedding → ML Pipeline 구�
 
 ---
 
-## 📁 Repository Structure
+## Version History
+
+| Version    | Date       | Changes                                                   |
+| ---------- | ---------- | --------------------------------------------------------- |
+| **v0.1.0** | 2025-12-02 | 프로젝트 구조 설계, Day1 Sessionizer 개발                 |
+| **v0.2.0** | 2025-12-03 | Clusterer 추가, Feature Store 설계                        |
+| **v0.3.0** | 2025-12-04 | README 구조 개선, Day3 Feature Engineering 완료           |
+| **v0.4.0** | 2025-12-05 | create_project.py 전면 개편 (자동 프로젝트 생성기 고도화) |
+| **v0.4.1** | 2025-12-05 | Template 기반 생성, 불필요 폴더 제거                      |
+| **v0.5.0** | 2025-12-06 | Day4 DE Pipeline 설계를 위한 구조 추가                    |
+
+### Version
+
+- **v0.1.0 (2025-12-09)**: 초기 템플릿 생성, Session-level Aggregation Task 정의
+- **v0.1.1 (2025-12-09)**: ModelInputBuilder class skeleton 추가
+- **v0.1.2 (2025-12-09)**: Notebook template & diagram template 자동생성 기능 추가
+
+---
+
+## Repository Structure
 
 아래는 전체 프로젝트 구조입니다:
 
@@ -44,7 +63,7 @@ dev_study/
 
 ---
 
-## 📈 Project Archive (자동 확장 구조)
+## Project Archive (자동 확장 구조)
 
 프로젝트는 날짜별로 `portfolio_projects/project_YYYY-MM-DD/` 폴더에 누적됩니다.
 각 프로젝트는 독립 실행 가능한 상태로 설계되어 있으며,
@@ -60,11 +79,9 @@ portfolio_projects/
 └── ...
 ```
 
-※ 최상단 README는 매일 수정할 필요 없이, 프로젝트는 폴더 구조가 자동으로 확장됩니다.
-
 ---
 
-## 🚀 How to Create a New Project
+## How to Create a New Project
 
 아래 스크립트를 사용하여 새 프로젝트 폴더를 생성합니다:
 
@@ -82,7 +99,7 @@ python tools/create_project.py --date YYYY-MM-DD
 
 ---
 
-## 🛠 Development Principles
+## Development Principles
 
 • 기능별 모듈화
 (feature_store/sessionizer.py, vectorizer.py, clusterer.py 등)
@@ -97,14 +114,22 @@ python tools/create_project.py --date YYYY-MM-DD
 
 ---
 
-## 🧪 Running Tests
+## Running Tests
 
 pytest
 
 ---
 
-## 📌 Purpose
+## Purpose
 
 본 포트폴리오는 일반적인 B2C/B2B 서비스 환경에서 사용되는 행동 분석 및 ML Pipeline 설계 역량을 입증하는 것을 목표로 합니다.
 
 ---
+
+### Developer Notes
+
+- v0.4.1에서 create_project.py를 개선하며 templates 기반 구조로 이동함.
+  이전 버전은 매일 동일한 폴더 구조를 생성했으나, Day별로 필요한 파일이 달라지므로
+  유지보수성이 떨어지는 문제를 해결함.
+- Day4부터 Notebook 시각화 assets 폴더를 각 프로젝트 내부로 이동하여
+  프로젝트 독립성이 강화됨.
