@@ -13,6 +13,15 @@ Version Management Policy (Semantic Versioning)
 
 CHANGE LOG
 ------------------------------------------------
+v1.7.0 (2025-12-09):
+- Added dynamic file generation system with '--gen' argument
+- AI-aware mode: Project can generate only the files needed for today's task
+- Imports templates from ./templates/feature_store, model, pipelines, tests, sql
+- Notebook JSON generation kept from v1.6.0
+- Auto EDA notebook included
+- Versioning & changelog block added
+- README template upgraded
+
 v1.6.0 (2025-12-09)
 - Added FULL Jupyter Notebook JSON generator
 - Added auto_eda.ipynb creation (Auto EDA workflow)
@@ -46,28 +55,48 @@ v1.1.0 (2025-12-08)
 
 v1.0.0 (2025-12-07)
 - Initial pipeline generator implemented
+
 """
 
 import os
 import json
+import argparse
 from datetime import datetime
+import shutil
 
-# -----------------------------------------------------
-# Notebook Template JSON
-# -----------------------------------------------------
+
+# ============================================================
+# Utility: Load a template file from templates/
+# ============================================================
+
+def load_template(rel_path: str) -> str:
+    """
+    템플릿 파일을 ./templates/ 경로에서 불러오는 함수.
+    존재하지 않을 경우 빈 문자열 반환.
+    """
+    full_path = os.path.join("templates", rel_path)
+
+    if os.path.exists(full_path):
+        with open(full_path, "r", encoding="utf-8") as f:
+            return f.read()
+    else:
+        return f"# Template not found for {rel_path}\n\n# ====================\n#   Fill your code\n# ====================\n"
+
+
+# ============================================================
+# Notebook JSON generator
+# ============================================================
 
 def generate_notebook_json(title: str, intro_text: str):
-    """Return valid Jupyter Notebook JSON"""
-
+    """올바른 JSON 포맷의 Jupyter Notebook 생성"""
     return {
         "cells": [
             {
                 "cell_type": "markdown",
                 "metadata": {},
                 "source": [
-                    f"# 📘 {title}\n\n",
+                    f"# {title}\n\n",
                     intro_text,
-                    "\n\n---\n"
                 ]
             },
             {
@@ -76,10 +105,10 @@ def generate_notebook_json(title: str, intro_text: str):
                 "metadata": {},
                 "outputs": [],
                 "source": [
-                    "# 기본 실행 코드 셀\n",
+                    "# Notebook initialized\n",
                     "import pandas as pd\n",
                     "import numpy as np\n",
-                    "print('Notebook initialized!')"
+                    "print('Notebook Ready!')"
                 ]
             }
         ],
@@ -88,30 +117,23 @@ def generate_notebook_json(title: str, intro_text: str):
                 "display_name": "Python 3",
                 "language": "python",
                 "name": "python3"
-            },
-            "language_info": {
-                "name": "python",
-                "version": "3.10"
             }
         },
         "nbformat": 4,
         "nbformat_minor": 5
     }
 
-# -----------------------------------------------------
-# Auto EDA Notebook Template
-# -----------------------------------------------------
 
 def generate_auto_eda_notebook():
+    """Auto EDA 전용 Notebook"""
     return {
         "cells": [
             {
                 "cell_type": "markdown",
                 "metadata": {},
                 "source": [
-                    "# 🔍 Auto EDA Notebook\n\n",
-                    "자동 EDA 수행을 위한 기본 코드가 포함.\n",
-                    "Raw 데이터 구조 파악 → 결측치 분석 → 통계 분석 → 시각화까지 자동화.\n"
+                    "# Auto EDA Notebook\n",
+                    "자동 분석(EDA)을 위한 기본 코드가 포함되어 있습니다.\n"
                 ]
             },
             {
@@ -122,167 +144,160 @@ def generate_auto_eda_notebook():
                 "source": [
                     "import pandas as pd\n",
                     "import seaborn as sns\n",
-                    "import matplotlib.pyplot as plt\n",
-                    "\n",
-                    "# 데이터 로딩\n",
+                    "import matplotlib.pyplot as plt\n\n",
                     "df = pd.read_csv('../data/raw/raw_events.csv')\n",
                     "df.head()"
-                ]
-            },
-            {
-                "cell_type": "code",
-                "execution_count": None,
-                "metadata": {},
-                "outputs": [],
-                "source": [
-                    "# 데이터 기본 정보\n",
-                    "df.info()"
-                ]
-            },
-            {
-                "cell_type": "code",
-                "execution_count": None,
-                "metadata": {},
-                "outputs": [],
-                "source": [
-                    "# 결측치 분석\n",
-                    "df.isnull().sum()"
-                ]
-            },
-            {
-                "cell_type": "code",
-                "execution_count": None,
-                "metadata": {},
-                "outputs": [],
-                "source": [
-                    "# 기본 통계\n",
-                    "df.describe(include='all')"
-                ]
-            },
-            {
-                "cell_type": "code",
-                "execution_count": None,
-                "metadata": {},
-                "outputs": [],
-                "source": [
-                    "# 주요 수치형 컬럼 histogram\n",
-                    "numeric_cols = df.select_dtypes(include=['int', 'float']).columns\n",
-                    "df[numeric_cols].hist(figsize=(10, 6))\n",
-                    "plt.show()"
                 ]
             }
         ],
         "metadata": {
-            "kernelspec": {
-                "display_name": "Python 3",
-                "language": "python",
-                "name": "python3"
-            }
+            "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}
         },
         "nbformat": 4,
         "nbformat_minor": 5
     }
 
-# -----------------------------------------------------
-# README Template
-# -----------------------------------------------------
+
+# ============================================================
+# README Generator
+# ============================================================
 
 def generate_readme(project_date):
     return f"""
-# 📌 Daily Project — {project_date}
+# Daily Project — {project_date}
 
-이 프로젝트는 매일 하나의 실무형 분석·엔지니어링 과제를 수행하며 포트폴리오를 구축하기 위한 자동 생성 템플릿.
-
----
-
-## 🎯 프로젝트 목적  
-- 실제 기업 환경에서 사용하는 Session 기반 분석, NLP 기반 Feature Engineering, ML 파이프라인 등을 구현  
-- 코드 구조화, 테스트 자동화, SQL 분석 역량 강화  
-- 매일 하나의 완성된 분석 결과를 남겨 포트폴리오 자산으로 활용  
+이 프로젝트는 매일의 실전 분석 역량 강화를 위해 자동 생성됩니다.
 
 ---
 
-## 📂 생성된 폴더 구조
-
-- `data/raw/`        → 원천 로그 데이터  
-- `data/processed/`  → 세션/특징 가공 데이터  
-- `feature_store/`   → Sessionizer, Feature Engineering, Vectorizer  
-- `model/`           → 모델 학습 파일  
-- `notebooks/`       → Auto EDA, Feature Analysis, Model Experiment  
-- `sql/`             → SQL 분석 예시  
-- `tests/`           → pytest 기반 자동 테스트  
+## 프로젝트 목적
+- 세션 기반 로그 분석과 ML Feature Engineering 경험 축적
+- 실무형 파이프라인 설계 능력 강화
+- 매일 하나씩 포트폴리오 성장
 
 ---
 
-## 🚀 시작 방법
+## 주요 자동 생성 요소
+- /data/raw
+- /data/processed
+- /feature_store
+- /model
+- /sql
+- /tests
+- /notebooks
+
+---
+
+## Run
 python pipelines/run_pipeline.py
 
+## Test
+qytest -q
+
 
 ---
 
-## 📘 Version History
-
-### v0.1.0 ({project_date})
-- 프로젝트 초기 생성  
-- Notebook/SQL/Test 구조 자동 생성  
-
+## 📘 Version
+v0.1.0 — {project_date}
 """
 
-# -----------------------------------------------------
-# MAIN FUNCTION — PROJECT CREATION
-# -----------------------------------------------------
+
+# ============================================================
+# Generate project
+# ============================================================
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--gen",
+        type=str,
+        default="all",
+        help="Generate specific modules: feature, model, pipeline, tests, sql, notebooks, all"
+    )
+    args = parser.parse_args()
+
     today = datetime.now().strftime("%Y-%m-%d")
-    base_path = os.path.join("portfolio_projects", f"project_{today}")
+    base = os.path.join("portfolio_projects", f"project_{today}")
+    os.makedirs(base, exist_ok=True)
 
-    os.makedirs(base_path, exist_ok=True)
-
-    # Create directories
-    subfolders = [
-        "data/raw", "data/processed",
-        "feature_store", "model",
-        "notebooks", "sql", "tests"
+    # 기본 디렉토리 생성
+    dirs = [
+        "data/raw",
+        "data/processed",
+        "feature_store",
+        "model",
+        "notebooks",
+        "sql",
+        "tests",
+        "pipelines"
     ]
 
-    for folder in subfolders:
-        os.makedirs(os.path.join(base_path, folder), exist_ok=True)
+    for d in dirs:
+        os.makedirs(os.path.join(base, d), exist_ok=True)
 
-    # -------------------------------------------------
-    # Create Notebook Files
-    # -------------------------------------------------
-
+    # ---------------------------------------------
+    # ALWAYS generate notebooks + README
+    # ---------------------------------------------
     notebooks = {
         "analysis.ipynb": generate_notebook_json(
-            "Daily Project Analysis",
-            "오늘 프로젝트의 분석 기록을 이곳에 작성."
+            "Daily Analysis Notebook", "오늘 분석 내용을 이곳에 작성하세요."
         ),
         "feature_analysis.ipynb": generate_notebook_json(
-            "Feature Engineering Analysis",
-            "Feature Engineering 실험을 기록하는 노트북."
+            "Feature Engineering Notebook", "Feature engineering 과정을 기록합니다."
         ),
         "model_experiment.ipynb": generate_notebook_json(
-            "Model Experiment Notebook",
-            "모델 학습 및 파라미터 튜닝 내용을 기록."
+            "Model Experiment Notebook", "모델 실험과 튜닝 결과를 기록합니다."
         ),
         "auto_eda.ipynb": generate_auto_eda_notebook()
     }
 
-    for filename, json_data in notebooks.items():
-        with open(os.path.join(base_path, "notebooks", filename), "w", encoding="utf-8") as f:
-            json.dump(json_data, f, ensure_ascii=False, indent=2)
+    for name, nb in notebooks.items():
+        save_path = os.path.join(base, "notebooks", name)
+        with open(save_path, "w", encoding="utf-8") as f:
+            json.dump(nb, f, ensure_ascii=False, indent=2)
 
-    # -------------------------------------------------
-    # Create README.md
-    # -------------------------------------------------
-
-    with open(os.path.join(base_path, "README.md"), "w", encoding="utf-8") as f:
+    # README 생성
+    with open(os.path.join(base, "README.md"), "w", encoding="utf-8") as f:
         f.write(generate_readme(today))
 
-    print(f"[SUCCESS] Project created: {base_path}")
+    # ---------------------------------------------
+    # Dynamic file generation
+    # ---------------------------------------------
 
-# -----------------------------------------------------
+    selected = args.gen.split(",")  # 예: ["feature","tests"]
+
+    def generate_if_needed(keyword, rel_template_path, dest_file_path):
+        """선택된 경우에만 템플릿 파일을 복사하여 생성"""
+        if "all" in selected or keyword in selected:
+            content = load_template(rel_template_path)
+            with open(os.path.join(base, dest_file_path), "w", encoding="utf-8") as f:
+                f.write(content)
+
+    # feature_store templates
+    generate_if_needed("feature", "feature_store/sessionizer.py", "feature_store/sessionizer.py")
+    generate_if_needed("feature", "feature_store/feat_eng.py", "feature_store/feat_eng.py")
+    generate_if_needed("feature", "feature_store/vectorizer.py", "feature_store/vectorizer.py")
+    generate_if_needed("feature", "feature_store/model_input_builder.py", "feature_store/model_input_builder.py")
+
+    # model templates
+    generate_if_needed("model", "model/intent_model.py", "model/intent_model.py")
+
+    # pipelines
+    generate_if_needed("pipeline", "pipelines/run_pipeline.py", "pipelines/run_pipeline.py")
+
+    # tests
+    generate_if_needed("tests", "tests/test_feature_store.py", "tests/test_feature_store.py")
+    generate_if_needed("tests", "tests/test_model_pipeline.py", "tests/test_model_pipeline.py")
+
+    # sql
+    generate_if_needed("sql", "sql/01_basic_analysis.sql", "sql/01_basic_analysis.sql")
+    generate_if_needed("sql", "sql/02_session_stats.sql", "sql/02_session_stats.sql")
+
+    print(f"[SUCCESS] Project created → {base}")
+    print(f"[INFO] created Module: {selected}")
+
 
 if __name__ == "__main__":
     main()
+
 
