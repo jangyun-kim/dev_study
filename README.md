@@ -26,33 +26,35 @@ Session Analysis → Feature Engineering → NLP Embedding → ML Pipeline 구�
   - Daily Project 생성 로직이 완전히 재설계될 때
   - 이전 버전과 호환이 깨지는 변경이 있을 때
 
-**예시**
+  **예시**
 
-- 프로젝트 생성 구조가 pipelines → src 구조로 완전히 전환됨
-- SQL/Notebook/Python 템플릿 구성이 완전히 새롭게 바뀜
-- create_project.py 실행 파라미터가 변경됨
+  - 프로젝트 생성 구조가 pipelines → src 구조로 완전히 전환됨
+  - SQL/Notebook/Python 템플릿 구성이 완전히 새롭게 바뀜
+  - create_project.py 실행 파라미터가 변경됨
 
 - MINOR (예: v1.2.0 → v1.3.0)
   **새로운 기능을 추가했을 때 적용되는 업데이트:**
-- 템플릿에 notebook 추가
-- SQL 기본 분석 템플릿 추가
-- Feature Engineering 샘플 추가
-- 테스트 템플릿 강화
-- 문서 자동 생성 기능 확장
-  호환성은 유지되며, MAJOR 업데이트 없이 기능만 강화됨
+
+  - 템플릿에 notebook 추가
+  - SQL 기본 분석 템플릿 추가
+  - Feature Engineering 샘플 추가
+  - 테스트 템플릿 강화
+  - 문서 자동 생성 기능 확장
+    호환성은 유지되며, MAJOR 업데이트 없이 기능만 강화됨
 
 - PATCH (예: v1.2.1 → v1.2.2)
   **버그 수정** 또는 **작은 품질 개선** 시 적용:
-- 경로 문제 해결
-- 오타 수정
-- create_project.py 리팩토링
-- 템플릿 내부 변수 누락 fix
-  기능적 변화 없이 동작 안정성을 높이는 목적.
+  - 경로 문제 해결
+  - 오타 수정
+  - create_project.py 리팩토링
+  - 템플릿 내부 변수 누락 fix
+    기능적 변화 없이 동작 안정성을 높이는 목적.
 
 ### Version History
 
 | Version    | Date       | Changes                                       |
 | ---------- | ---------- | --------------------------------------------- |
+| **v1.5.0** | 2025-12-09 | Auto EDA System Added                         |
 | **v1.4.0** | 2025-12-09 | Change Log System Added & Version Unification |
 | **v1.3.0** | 2025-12-08 | Unified Version System                        |
 | **v1.2.0** | 2025-12-08 | Notebook + Feature/SQL Templates Added        |
@@ -61,17 +63,23 @@ Session Analysis → Feature Engineering → NLP Embedding → ML Pipeline 구�
 
 ### Version Change Log
 
+- **v1.5.0 (2025-12-09)**:
+  - Lightweight Auto EDA 모듈 추가 (missing, stats, plot, heatmap)
+  - 모든 Daily Project에 eda_overview.md 자동 생성
+  - assets 폴더에 시각화 파일 저장 기능 포함
+  - DatasetBuilder와 Template Generator에 AutoEDA 연동
 - **v1.4.0 (2025-12-09)**:
   - Daily Version 제거 및 Global Version 단일화,
   - create_project.py 내부 Change Log 공식 섹션 추가,
-  - README에 Template Version 자동 삽입 로직 통합
+  - README에 Template Version 자동 삽입 로직 통합,
   - 전체 버전 관리 체계 정립 (MAJOR/MINOR/PATCH)
-- **v1.3.0 (2025-12-08)**: ModelInputBuilder class skeleton 추가
-  - Daily project versions removed
-  - Only global template version maintained as general version
+- **v1.3.0 (2025-12-08)**:
+  - ModelInputBuilder class skeleton 추가,
+  - Daily project versions removed,
+  - Only global template version maintained as general version,
   - Daily README cleanup & version removal
-- **v1.2.0 (2025-12-08)**: Notebook template & diagram template 자동생성 기능 추가
-  - Notebook template 자동 생성
+- **v1.2.0 (2025-12-08)**:
+  - Notebook template & diagram template 자동생성 기능 추가
   - Feature engineering sample 추가
   - SQL analysis 치환 기능 구축
 - **v1.1.0 (2025-12-08)**:
@@ -174,11 +182,3 @@ pytest
 본 포트폴리오는 일반적인 B2C/B2B 서비스 환경에서 사용되는 행동 분석 및 ML Pipeline 설계 역량을 입증하는 것을 목표로 합니다.
 
 ---
-
-### Developer Notes
-
-- v0.4.1에서 create_project.py를 개선하며 templates 기반 구조로 이동함.
-  이전 버전은 매일 동일한 폴더 구조를 생성했으나, Day별로 필요한 파일이 달라지므로
-  유지보수성이 떨어지는 문제를 해결함.
-- Day4부터 Notebook 시각화 assets 폴더를 각 프로젝트 내부로 이동하여
-  프로젝트 독립성이 강화됨.
