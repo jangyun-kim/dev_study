@@ -1,0 +1,9 @@
+session_id,intent
+1,browse
+2,browse
+3,info_lookup
+4,purchase
+5,browse
+6,info_lookup
+7,vehicle_charge
+8,learning

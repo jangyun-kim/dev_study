@@ -1,0 +1,44 @@
+user_id,event_time,event_text
+1,2025-01-01 09:00:00,search hybrid suv deals
+1,2025-01-01 09:02:30,view kona hybrid 2024 specs
+1,2025-01-01 09:05:10,click suv comparison page
+1,2025-01-01 10:20:00,search ev charging station near home
+1,2025-01-01 10:22:10,view ioniq 6 battery info
+1,2025-01-01 10:45:00,click charger map details
+1,2025-01-01 13:00:00,search tire replacement cost
+1,2025-01-01 13:01:30,view tire brand comparison
+1,2025-01-01 13:05:40,click tire shop details
+
+2,2025-01-02 08:10:00,search running shoes discount
+2,2025-01-02 08:11:40,view nike zoom fly review
+2,2025-01-02 08:15:00,click product detail
+2,2025-01-02 11:00:00,search fitness tracker
+2,2025-01-02 11:03:00,view fitbit charge 6 features
+2,2025-01-02 11:05:50,add to cart
+2,2025-01-02 14:20:00,search protein powder benefits
+2,2025-01-02 14:23:00,view whey protein isolate
+2,2025-01-02 14:24:30,click supplement detail page
+
+3,2025-01-03 15:00:00,search iphone 16 case
+3,2025-01-03 15:02:30,view clear iphone case review
+3,2025-01-03 15:05:00,click iphone accessory detail
+3,2025-01-03 17:30:00,search bluetooth earbuds
+3,2025-01-03 17:33:20,view pixel buds pro 2
+3,2025-01-03 17:35:10,add earbuds to cart
+3,2025-01-03 20:10:00,search laptop deals
+3,2025-01-03 20:12:00,view macbook air m4 review
+3,2025-01-03 20:14:10,click product comparison
+
+4,2025-01-04 09:10:00,search mortgage calculator
+4,2025-01-04 09:12:30,view loan interest rates 2025
+4,2025-01-04 09:15:00,click home loan details
+4,2025-01-04 12:40:00,search investment etf guide
+4,2025-01-04 12:43:30,view s&p500 etf analysis
+4,2025-01-04 12:50:10,click investment tips article
+
+5,2025-01-05 10:00:00,search best sushi delivery
+5,2025-01-05 10:01:30,view sushi restaurant nearby
+5,2025-01-05 10:03:00,order salmon sushi set
+5,2025-01-05 13:20:00,search flight tickets to japan
+5,2025-01-05 13:23:10,view airline price comparison
+5,2025-01-05 13:25:40,click itinerary detail page

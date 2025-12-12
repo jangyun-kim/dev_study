@@ -1,0 +1,25 @@
+user_id,event_time,event_text
+1,2025-12-01 09:00:00,search hybrid suv deals
+1,2025-12-01 09:01:30,view kona hybrid 2024
+1,2025-12-01 09:03:10,click car detail page
+1,2025-12-01 10:10:00,search ev charging station
+1,2025-12-01 10:12:20,view ioniq 6 battery info
+1,2025-12-01 10:15:00,click charger subsidy page
+
+2,2025-12-01 11:00:00,search running shoes discount
+2,2025-12-01 11:02:10,view nike zoom fly
+2,2025-12-01 11:03:40,view nike zoom fly size chart
+2,2025-12-01 11:05:30,click product detail
+2,2025-12-01 11:08:00,add to cart
+2,2025-12-01 11:09:30,purchase complete
+
+3,2025-12-02 16:00:00,search iphone 16 cases
+3,2025-12-02 16:01:10,view clear iphone 16 case
+3,2025-12-02 16:04:00,search magsafe holder review
+3,2025-12-02 16:06:20,view magsafe holder pro max
+3,2025-12-02 16:08:00,click accessory detail page
+
+4,2025-12-03 09:00:00,vehicle start signal
+4,2025-12-03 09:05:00,vehicle stop signal
+4,2025-12-03 09:30:00,search ev charging station map
+4,2025-12-03 09:33:00,view nearby charger location
