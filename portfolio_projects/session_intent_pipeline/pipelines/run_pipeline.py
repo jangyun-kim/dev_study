@@ -5,6 +5,7 @@ import pandas as pd
 from feature_store.sessionizer import Sessionizer
 from feature_store.aggregator import SessionTextAggregator
 from feature_store.vectorizer import SessionVectorizer
+from feature_store.clusterer import SessionClusterer
 
 
 def main():
@@ -52,6 +53,19 @@ def main():
 
     print("Vectorization completed")
     print("TF-IDF shape: ", X.shape)
+
+    # =====================
+    # Clustering (Day 3_1)
+    # =====================
+    clusterer = SessionClusterer(n_clusters = 3)
+    labels = clusterer.fit_predict(X)
+
+    session_docs["cluster_id"] = labels
+
+    session_docs.to_csv("data/processed/session_docs.csv", index = False)
+
+    print("Clustering completed")
+    print(session_docs[["global_session_id", "cluster_id"]])
 
 if __name__ == "__main__":
     main()
