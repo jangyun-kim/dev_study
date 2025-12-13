@@ -82,7 +82,7 @@
 | Day 1 | Raw Event 이해 & Sessionization | - Defined session boundaries based on inactivity threshold <br /> - Implemented reusable `Sessionizer` class <br /> - Validated session counts and edge cases                                                                        |
 | Day 2 | Session-level Text Aggregation  | Event-level user logs were aggregated into session-level documents, preserving temporal order.<br  /> Each session represents a coherent user intent window and serves as the fundamental document unit for downstream NLP modeling. |
 
-| Day 3 | Session-level Feature Engineering | Session documents were transformed into TF-IDF vectors using unigram and bigram features.<br /> This representation enables intent clustering and similarity analysis at the session level. |
+| Day 3 | Session-level Feature Engineering | Session documents were transformed into TF-IDF vectors using unigram and bigram features.<br /> This representation enables intent clustering and similarity analysis at the session level.
 | Day 4 | Feature Store 구조 고도화 |
 | Day 5 | SQL 기반 세션 집계 버전 구현 |
 
