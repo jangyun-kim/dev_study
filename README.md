@@ -1,3 +1,6 @@
+##This repository contains archived learning notes and experiments.
+
+
 # Data Portfolio – Practical Machine Learning & Data Engineering Projects
 
 이 레포지토리는 웹/앱 기반 서비스 환경에서 수집되는 **사용자 행동 데이터(User Behavior Logs)** 를 활용하여  
